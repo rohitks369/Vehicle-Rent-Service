@@ -50,7 +50,7 @@ public class RentService {
                     Booking booking = new Booking(branch.getName(), type, startTime, endTime);
                     branch.addBooking(booking); // Add booking to the branch's bookings list
                     
-                    return branch.getName()!=null?"book from "+branch.getName():"No Vehicle";
+                    return "Book from "+branch.getName();
                 }
             }
         }
@@ -90,10 +90,10 @@ public class RentService {
                     }
                 }
                 if (isBooked) {
-                    System.out.println("● All \"" + type + "\" are booked.");
+                    System.out.println("\t● All \"" + type + "\" are booked.");
                 } else {
                     double price = branch.getPrices().getOrDefault(type, 0.0);
-                    System.out.println("● \"" + type + "\" is available for Rs." + price);
+                    System.out.println("\t● \"" + type + "\" is available for Rs." + price);
                 }
             }
         }

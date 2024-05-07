@@ -17,18 +17,21 @@ public class Driver {
 		// Renting vehicles for the specified time slots
 		String rent1 = rentService.rentVehicle("suv", LocalDateTime.of(2024, 2, 20, 10, 0),
 				LocalDateTime.of(2024, 2, 20, 12, 0)); 
-		System.out.println(rent1);// Should book
-		// from
-		// Malleshwaram
+		if(rent1!=null)
+			System.out.println(rent1);// Should book from Malleshwaram
+		else {
+			System.out.println("No Vehicle");
+		}
 		String rent2 =rentService.rentVehicle("suv", LocalDateTime.of(2024, 2, 20, 10, 0), LocalDateTime.of(2024, 2, 20, 12, 0)); // Should
 		System.out.println(rent2);																									// book
 		// from
 		// Koramangala
 		String rent3 =rentService.rentVehicle("suv", LocalDateTime.of(2024, 2, 20, 10, 0), LocalDateTime.of(2024, 2, 20, 12, 0)); // Should
-		
-		System.out.println(rent3);																									// fail
-		// saying no
-		// vehicle
+		if(rent3!=null)
+			System.out.println(rent3);// Should no vehicle
+		else {
+			System.out.println("No Vehicle");
+		}	
 		
 		
 		LocalDateTime startTime = LocalDateTime.of(2024, 2, 20, 11, 0);
