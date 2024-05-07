@@ -26,7 +26,7 @@ public class RentService {
 		}
 		branchRepository.addBranch(branch);
 	}
-	public static void addVehicle(String branchName, String type, int quantity) {
+	public  void addVehicle(String branchName, String type, int quantity) {
         Branch branch = BranchRepository.getBranch(branchName);
         if (branch != null) {
             Map<String, Integer> vehicles = branch.getVehicles();
@@ -69,5 +69,33 @@ public class RentService {
         return false; // No overlapping booking found
     }
 	 
+    public static void printSystemViewForTimeSlot(LocalDateTime startTime, LocalDateTime endTime) {
+        List<Branch> branches = BranchRepository.getAllBranches();
+
+        // Print the header
+        System.out.println("Output:");
+
+        // Iterate over each branch
+        for (Branch branch : branches) {
+            System.out.println("■ '" + branch.getName() + "':");
+
+            // Check each vehicle type
+            for (String type : branch.getVehicles().keySet()) {
+                boolean isBooked = false;
+                for (Booking booking : branch.getBookings()) {
+                    if (booking.getVehicleType().equals(type) && booking.getStartTime().isBefore(endTime) && booking.getEndTime().isAfter(startTime)) {
+                        isBooked = true;
+                        break;
+                    }
+                }
+                if (isBooked) {
+                    System.out.println("● All \"" + type + "\" are booked.");
+                } else {
+                    double price = branch.getPrices().getOrDefault(type, 0.0);
+                    System.out.println("● \"" + type + "\" is available for Rs." + price);
+                }
+            }
+        }
+    }
 	
 }
