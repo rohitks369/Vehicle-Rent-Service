@@ -46,5 +46,11 @@ public class Booking {
 	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
+
+	@Override
+	public String toString() {
+		return "Booking [branchName=" + branchName + ", vehicleType=" + vehicleType + ", startTime=" + startTime
+				+ ", endTime=" + endTime + "]";
+	}
     
 }

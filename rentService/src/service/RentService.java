@@ -35,7 +35,7 @@ public class RentService {
         }
     }
 	
-	public static Booking rentVehicle(String type, LocalDateTime startTime, LocalDateTime endTime) {
+	public  String rentVehicle(String type, LocalDateTime startTime, LocalDateTime endTime) {
         List<Branch> branches = BranchRepository.getAllBranches();
         branches.sort((b1, b2) -> {
             double price1 = b1.getPrices().getOrDefault(type, Double.MAX_VALUE);
@@ -49,7 +49,8 @@ public class RentService {
                     branch.getVehicles().put(type, branch.getVehicles().get(type) - 1);
                     Booking booking = new Booking(branch.getName(), type, startTime, endTime);
                     branch.addBooking(booking); // Add booking to the branch's bookings list
-                    return booking;
+                    
+                    return branch.getName()!=null?"book from "+branch.getName():"No Vehicle";
                 }
             }
         }
