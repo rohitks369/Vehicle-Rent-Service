@@ -1,6 +1,7 @@
 package driver;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import service.RentService;
@@ -28,6 +29,15 @@ public class Driver {
 		System.out.println(rent3);																									// fail
 		// saying no
 		// vehicle
+		
+		
+		LocalDateTime startTime = LocalDateTime.of(2024, 2, 20, 11, 0);
+        LocalDateTime endTime = LocalDateTime.of(2024, 2, 20, 12, 0);
+
+        // Print system view for the given time slot
+        System.out.println("Printing system view for the time slot: " +
+                formatTime(startTime) + " to " + formatTime(endTime));
+        rentService.printSystemViewForTimeSlot(startTime, endTime);
 
 	}
 
@@ -44,5 +54,9 @@ public class Driver {
 		rentService.addBranch("Malleshwaram", malleshwaramVehicles);
 		System.out.println("Addedd successfully");
 	}
+	
+	private static String formatTime(LocalDateTime time) {
+        return time.format(DateTimeFormatter.ofPattern("d MMM uuuu h:mm a"));
+    }
 
 }
